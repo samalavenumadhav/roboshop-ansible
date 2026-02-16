@@ -32,6 +32,22 @@
         src: /tmp/catalogue.zip
         dest: /app
         remote_src: yes
+
+    - name: install dependies
+      community.general.npm:
+        path: /app
+
+    - name: copy catalogue service
+      ansible.builtin.copy:
+        src: catalogue.service
+        dest: /etc/systemd/system/catalogue.service
+
+    - name: copy mongo repo
+      ansible.builtin.copy:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
+
+    
     
 
 
