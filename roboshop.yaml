@@ -1,11 +1,11 @@
 - name: create ec2 and r53 records
-  hosts: localhost
+  hosts: all
   connection: local
   vars:
-    sg_id: 
-    ami_id:
-    domain_name:
-    env:
+    sg_id: sg-04bf207726913681f
+    ami_id: ami-0220d79f3f480ecf5
+    domain_name: samala.online
+    env: dev
     instances:
     - mongodb
     - catalogue
