@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: enable nodejs 20
-      ansible.builtin.command: dnf enable nodejs:20 -yes
+      ansible.builtin.command: dnf enable nodejs:20 -y
 
     - name: install nodejs
       ansible.builtin.dnf:
@@ -42,7 +42,7 @@
       ansible.builtin.template:
         src: user.service
         dest: /etc/systemd/system/user.service
-        
+
     - name: start and enable user
       ansible.builtin.service:
         name: user
