@@ -10,8 +10,6 @@
         name: nodejs
         state: present
 
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-
     - name: system user creation
       ansible.builtin.user:
         system: true 
@@ -44,6 +42,7 @@
       ansible.builtin.template:
         src: user.service
         dest: /etc/systemd/system/user.service
+        
     - name: start and enable user
       ansible.builtin.service:
         name: user
