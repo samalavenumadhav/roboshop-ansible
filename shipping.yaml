@@ -43,7 +43,7 @@
         chdir: /app
 
     - name: copy shipping.service
-      ansible.builtin.service:
+      ansible.builtin.template:
         src: shipping.service
         dest: /etc/systemd/system/shipping.service
 
