@@ -55,7 +55,7 @@
 
     - name: install mysql client
       ansible.builtin.dnf:
-        name: mysql -y 
+        name: mysql 
         state: present
 
     - name: import shipping data
