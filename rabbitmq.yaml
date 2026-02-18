@@ -2,8 +2,8 @@
   hosts: rabbitmq
   become: yes
   tasks:
-  
-    - name: copy rabbitMQ repo
+
+    - name: copy rabbitmq repo
       ansible.builtin.copy:
         src: rabbitmq.repo
         dest: /etc/yum.repos.d/rabbitmq.repo
@@ -13,7 +13,7 @@
         name: rabbitmq-server
         state: present
 
-    - name: start and enable rabbitMQ
+    - name: start and enable rabbitmq
       ansible.builtin.service:
         name: rabbitmq-server
         state: restarted
@@ -24,10 +24,10 @@
           user: roboshop 
           password: roboshop123
           permissions:
-           - vhost: /
-          configure_priv: .*
-          read_priv: .*
-          write_priv: .*
+            - vhost: /
+              configure_priv: .*
+              read_priv: .*
+              write_priv: .*
           state: present
 
 
