@@ -9,6 +9,7 @@
       ansible.builtin.dnf:
         name: nodejs
         state: present
+
     - name: create system user
       ansible.builtin.user:
         name: roboshop
@@ -41,6 +42,11 @@
       ansible.builtin.copy:
         src: catalogue.service
         dest: /etc/systemd/system/catalogue.service
+
+    - name: reload systemd
+      ansible.builtin.systemd:
+        daemon_reload: yes
+
 
     - name: copy mongo repo
       ansible.builtin.copy:
