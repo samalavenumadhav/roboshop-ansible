@@ -20,8 +20,8 @@
 
     - name: delete catalogue zip file
       ansible.builtin.file:
-      path: /tmp/catalogue.zip
-      state: absent
+        path: /tmp/catalogue.zip
+        state: absent
 
     - name: create app directory
       ansible.builtin.file:
