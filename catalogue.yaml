@@ -18,9 +18,9 @@
         shell: /sbin/nologin
         comment: "Roboshop system user"
 
-    - name: delete catalogue zip file
+    - name: Remove old app directory
       ansible.builtin.file:
-        path: /tmp/catalogue.zip
+        path: /app
         state: absent
 
     - name: create app directory
