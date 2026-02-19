@@ -63,17 +63,23 @@
       name: mongodb-mongosh
       state: present
 
-  - name: check products loaded
-    ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}" --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+  - name: check products count
+    ansible.builtin.command: >
+      mongosh --host "{{ MONGODB_HOST }}" --quiet --eval
+      'db = db.getSiblingDB("catalogue");
+       db.products.countDocuments()'
     register: catalogue_output
+
+  - name: load the products
+    ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
+    when: catalogue_output.stdout | int == 0
+    
 
   - name: print the output
     ansible.builtin.debug:
       msg: "{{ catalogue_output }}"
 
-  - name: load the products
-    ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
-    when: catalogue_output.stdout  | int < 0
+
 
   - name: start catalogue
     ansible.builtin.service:
